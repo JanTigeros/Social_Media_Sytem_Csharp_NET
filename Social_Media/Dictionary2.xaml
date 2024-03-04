@@ -1,0 +1,245 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="Window" x:Key="MainWindowStyle">
+        <Setter Property="Background" Value="#F0F0F0"/>
+        <Setter Property="Foreground" Value="#333333"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="DefaultButtonStyle">
+        <Setter Property="Background" Value="#007ACC"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+    </Style>
+
+    <Style TargetType="Grid" x:Key="DefaultBackgroundStyle">
+        <Setter Property="Background" Value="#FF363636"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="WhiteLabelStyle">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style TargetType="DockPanel" x:Key="SidePanelDockPanelStyle">
+        <Setter Property="Margin" Value="0 0 0 20"/>
+    </Style>
+
+    <Style TargetType="DockPanel" x:Key="UserPanelDockPanelStyle">
+        <Setter Property="Margin" Value="0 0 0 20"/>
+        <Setter Property="Height" Value="30"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="AddIconButtonStyle">
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image Width="25" Height="25" Source="/AddIcon.png" Stretch="Fill"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="EditIconButtonStyle">
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image Width="25" Height="25" Source="/EditIcon.png" Stretch="Fill"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="RemoveIconButtonStyle">
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image Width="25" Height="25" Source="/RemoveIcon.png" Stretch="Fill"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Label" x:Key="SidePannelLabelStyle">
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="SidePannelTextBoxStyle">
+        <Setter Property="Margin" Value="0 0 20 0"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Background" Value="#FF363636"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="TitleLabelStyle">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="ContentLabelStyle">
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="ContentTextBoxStyle">
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+        <Setter Property="Margin" Value="0 10 10 0"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="UserPannelTextBoxStyle">
+        <Setter Property="Margin" Value="10 10 10 0"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Background" Value="#FF363636"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Width" Value="200"/>
+    </Style>
+
+    <Style TargetType="Image" x:Key="ProfilePictureStyle">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Height" Value="80"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Source" Value="/profile_picture.png"/>
+    </Style>
+
+    <Style TargetType="StackPanel" x:Key="FriendCountStyle">
+        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="Width" Value="400"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="5"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Friends.Count, FallbackValue=0}" Value="0">
+                <Setter Property="Background" Value="Red"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Friends.Count}" Value="{x:Null}">
+                <Setter Property="Background" Value="Red"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="TitleTextBlockStyle">
+        <Setter Property="Width" Value="400"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="DateTextBlockStyle">
+        <Setter Property="Width" Value="400"/>
+        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontStyle" Value="Italic"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="FriendsTextBlockStyle">
+        <Setter Property="Width" Value="400"/>
+        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+        <Setter Property="Foreground" Value="#FF009AFF"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="ContentTextBlockStyle">
+        <Setter Property="Width" Value="400"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style TargetType="Image" x:Key="ImageStyle">
+        <Setter Property="Height" Value="200"/>
+        <Setter Property="Margin" Value="10 10 10 10"/>
+    </Style>
+
+    <Style TargetType="ListView" x:Key="FriendsListViewStyle">
+        <Setter Property="MinHeight" Value="200"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="#FF363636"/>
+        <Setter Property="Background" Value="#FF363636"/>
+    </Style>
+
+    <Style TargetType="Image" x:Key="MenuProfileImageStyle">
+        <Setter Property="Grid.Column" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Grid.Row" Value="1"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Source" Value="/profile_picture.png"/>
+    </Style>
+
+    <Style TargetType="MenuItem" x:Key="MenuItemStyle">
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Foreground" Value="#FF729CF9"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="Width" Value="160"/>
+    </Style>
+
+    <Style TargetType="TabControl" x:Key="TabControlStyle">
+        <Setter Property="Background" Value="#FF363636"/>
+    </Style>
+
+    <Style TargetType="StackPanel" x:Key="StackPanelBGStyle">
+        <Setter Property="Background" Value="#FF363636"/>
+    </Style>
+
+    <Style TargetType="ListView" x:Key="ListViewStyle">
+        <Setter Property="Background" Value="#FF363636"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="MinHeight" Value="200"/>
+    </Style>
+
+    <Style TargetType="Rectangle" x:Key="RectangleStyle">
+        <Setter Property="Fill" Value="White"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="NameTextBlockStyle">
+        <Setter Property="Width" Value="400"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Text">
+            <Setter.Value>
+                <MultiBinding StringFormat="{}{0} {1}">
+                    <Binding Path="Name"/>
+                    <Binding Path="Surname"/>
+                </MultiBinding>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="StackPanel" x:Key="ImageStackPanelStyle">
+        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="Width" Value="400"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+</ResourceDictionary>

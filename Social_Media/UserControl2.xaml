@@ -1,0 +1,170 @@
+﻿<UserControl x:Class="Social_Media.UserControl2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Social_Media"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionary2.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" MinWidth="160"></ColumnDefinition>
+            <ColumnDefinition MinWidth="300" Width="4*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" MinHeight="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label FontSize="25" Grid.Row="0" Grid.Column="0" Foreground="#FF729CF9" Margin="0 0 0 0">LinkedIn</Label>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Image Style="{StaticResource MenuProfileImageStyle}"></Image>
+            <Menu Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Left" Background="White">
+                <MenuItem Header="Nastavitve" Style="{StaticResource MenuItemStyle}">
+                    <MenuItem Name="MIPrivzeta" Click="MIPrivzeta_Click" Header="1 Pogled"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Datoteka" Style="{StaticResource MenuItemStyle}">
+                    <MenuItem Header="Prijatelji"></MenuItem>
+                    <MenuItem Name="MIIzhod" Click="MIIzhod_Click" Header="Izhod"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Objave" Style="{StaticResource MenuItemStyle}">
+                    <MenuItem Header="Dodaj" Command="{Binding AddPostCommand}"></MenuItem>
+                    <MenuItem x:Name="MIOdtrani" Header="Odstrani" Command="{Binding RemovePostCommand}"></MenuItem>
+                    <MenuItem x:Name="MIUredi" Header="Uredi" Command="{Binding EditPostCommand}"></MenuItem>
+                </MenuItem>
+            </Menu>
+            <Label Content="{Binding SelectedPost.Title}" Style="{StaticResource TitleLabelStyle}"></Label>
+            <DockPanel HorizontalAlignment="Right" Width="160">
+                <Button Command="{Binding AddPostCommand}" Style="{StaticResource AddIconButtonStyle}"></Button>
+                <Button  Command="{Binding EditPostCommand}" Style="{StaticResource EditIconButtonStyle}"></Button>
+                <Button  Command="{Binding RemovePostCommand}" Style="{StaticResource RemoveIconButtonStyle}"></Button>
+            </DockPanel>
+        </StackPanel>
+        <StackPanel x:Name="stackPanel" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="5">
+            <TabControl Height="{Binding ActualHeight, ElementName=stackPanel, Mode=OneWay}" Style="{StaticResource TabControlStyle}">
+                <TabItem Header="Zid">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ListView x:Name="LVPosts" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Posts}" MouseDoubleClick="ListView_DoubleClick" SelectionChanged="LVPosts_OnSelectionChanged" Style="{StaticResource ListViewStyle}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Style="{StaticResource FriendCountStyle}">
+                                        <TextBlock Name="Title" Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
+                                        <TextBlock Name="Date" Text="{Binding Date}" Style="{StaticResource DateTextBlockStyle}"></TextBlock>
+                                        <TextBlock x:Name="TBFriendsLV" Text="{Binding FriendsToString}" Style="{StaticResource FriendsTextBlockStyle}"></TextBlock>
+                                        <TextBlock Name="Content" Text="{Binding Content}" Style="{StaticResource ContentTextBlockStyle}"></TextBlock>
+                                        <Image Source="{Binding Url}" Style="{StaticResource ImageStyle}"></Image>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="O meni">
+                    <Grid Style="{StaticResource DefaultBackgroundStyle}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="3*" MinHeight="240"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource RectangleStyle}"></Rectangle>
+                        <Image Grid.Column="0" Grid.Row="0" Style="{StaticResource ProfilePictureStyle}"></Image>
+                        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left">
+                            <DockPanel Style="{StaticResource UserPanelDockPanelStyle}">
+                                <Label Content="Name:" Style="{StaticResource SidePannelLabelStyle}"/>
+                                <TextBox x:Name="TBUserName" Style="{StaticResource UserPannelTextBoxStyle}"/>
+                            </DockPanel>
+
+                            <DockPanel Style="{StaticResource UserPanelDockPanelStyle}">
+                                <Label Content="Surname:" Style="{StaticResource SidePannelLabelStyle}"/>
+                                <TextBox x:Name="TBUserSurname" Style="{StaticResource UserPannelTextBoxStyle}"/>
+                            </DockPanel>
+
+                            <DockPanel Style="{StaticResource UserPanelDockPanelStyle}">
+                                <Label Content="Desc:" Style="{StaticResource SidePannelLabelStyle}"/>
+                                <TextBox x:Name="TBUserDesc" Style="{StaticResource UserPannelTextBoxStyle}"/>
+                            </DockPanel>
+
+                            <DockPanel Style="{StaticResource UserPanelDockPanelStyle}">
+                                <Label Content="School:" Style="{StaticResource SidePannelLabelStyle}"/>
+                                <TextBox x:Name="TBUserSchool" Style="{StaticResource UserPannelTextBoxStyle}"/>
+                            </DockPanel>
+
+                            <DockPanel Style="{StaticResource UserPanelDockPanelStyle}">
+                                <Label Content="Location:" Style="{StaticResource SidePannelLabelStyle}"/>
+                                <TextBox x:Name="TBUserLocation" Style="{StaticResource UserPannelTextBoxStyle}"/>
+                            </DockPanel>
+                            <DockPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 20 20">
+                                <Button Style="{StaticResource AddIconButtonStyle}" Click="UserButton_Click"></Button>
+                            </DockPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Prijatelji">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ListView Grid.Column="1" x:Name="LVFriends" ItemsSource="{Binding Friends}" SelectedIndex="{Binding SelectedFriendIndex}" SelectionChanged="LVFriends_SelectionChanged" Style="{StaticResource FriendsListViewStyle}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel MinWidth="100" Width="400" HorizontalAlignment="Center">
+                                        <TextBlock Name="Name"  Style="{StaticResource NameTextBlockStyle}"></TextBlock>
+                                        <TextBlock Width="400" Height="50" Text="{Binding Age}" TextWrapping="WrapWithOverflow"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <StackPanel Grid.Column="0" Name="SPCurrentFriend" Margin="0 20 0 0">
+                            <DockPanel Style="{StaticResource SidePanelDockPanelStyle}">
+                                <Label Content="Name:" Style="{StaticResource SidePannelLabelStyle}"></Label>
+                                <TextBox Name="TBFriendName" Text="{Binding SelectedFriend.Name}" Style="{StaticResource SidePannelTextBoxStyle}"></TextBox>
+                            </DockPanel>
+                            <DockPanel Style="{StaticResource SidePanelDockPanelStyle}">
+                                <Label Content="Surname:" Style="{StaticResource SidePannelLabelStyle}"></Label>
+                                <TextBox Name="TBFriendSurname" Text="{Binding SelectedFriend.Surname}" Style="{StaticResource SidePannelTextBoxStyle}"></TextBox>
+                            </DockPanel>
+                            <DockPanel Style="{StaticResource SidePanelDockPanelStyle}">
+                                <Label Content="Age:" Style="{StaticResource SidePannelLabelStyle}"></Label>
+                                <TextBox Name="TBFriendAge" Text="{Binding SelectedFriend.Age}" Style="{StaticResource SidePannelTextBoxStyle}"></TextBox>
+                            </DockPanel>
+                            <DockPanel HorizontalAlignment="Right" Margin="0 0 20 0">
+                                <Button Command="{Binding AddFriendCommand}" Style="{StaticResource AddIconButtonStyle}">
+                                </Button>
+                                <Button  Command="{Binding EditFriendCommand}" Style="{StaticResource EditIconButtonStyle}">
+                                </Button>
+                                <Button  Command="{Binding RemoveFriendCommand}" Style="{StaticResource RemoveIconButtonStyle}">
+                                </Button>
+                            </DockPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Slike" >
+                    <ListView x:Name="LVImages" ItemsSource="{Binding Posts}" Style="{StaticResource ListViewStyle}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Style="{StaticResource ImageStackPanelStyle}">
+                                    <Image Height="200" Source="{Binding Url}" Margin="10 10 10 10"></Image>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+    </Grid>
+</UserControl>
